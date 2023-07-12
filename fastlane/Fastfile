@@ -23,7 +23,8 @@ platform :android do
     # sh("jarsigner -keystore richard-release-key.jks -storepass whsy0805 -keypass whsy0805  ~/workspace/github/android-helloworld/app/build/outputs/bundle/release/*.aab richard-alias")
     upload_to_play_store(
       package_name: "com.richard.helloworld",
-      track: "internal"
+      track: "internal",
+      aab: "app/build/outputs/bundle/release/app-release.aab"
     )
   end
 end
