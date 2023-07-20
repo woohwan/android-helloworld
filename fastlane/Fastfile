@@ -20,7 +20,8 @@ platform :android do
   desc "Deploy a new version to the Google Play"
   lane :deploy do
     # gradle(task: "clean bundleRelease")
-    # sh("jarsigner -keystore richard-release-key.jks -storepass whsy0805 -keypass whsy0805  ~/workspace/github/android-helloworld/app/build/outputs/bundle/release/*.aab richard-alias")
+    # sh "jarsigner -keystore #{ENV['KEYSTORE']} -storepass #{ENV['STORE_PASSWORD']} -keypass #{ENV['KEY_PASSWORD']}  ~/workspace/gitlab/android-cicd/app/build/outputs/bundle/release/*.aab #{ENV['KEY_ALIAS']}"
+    sh('jarsigner -keystore "$KEYSTORE" -storepass "$STORE_PASSWORD" -keypass "$KEY_PASSWORD"  ~/workspace/gitlab/android-cicd/app/build/outputs/bundle/release/*.aab "$KEY_ALIAS"')
     upload_to_play_store(
       package_name: "com.richard.helloworld",
       track: "internal",
